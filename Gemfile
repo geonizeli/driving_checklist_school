@@ -49,6 +49,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "bootstrap", "~> 5.1"
+gem "devise", "~> 4.8"
 gem "simple_form", "~> 5.1"
 
 group :development, :test do
