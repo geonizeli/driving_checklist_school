@@ -1,0 +1,35 @@
+<%= render partial: 'shared/notice' %>
+
+<div class="d-flex justify-content-between">
+  <h1>Achievements</h1>
+  <div>
+    <%= link_to "New achievement", new_achievement_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<div id="achievements">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Concluded at</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @achievements.each_with_index do |achievement, index| %>
+        <tr scope="row">
+          <td><%= index + 1 %></td>
+          <td><%= achievement.lesson.name %></td>
+          <td><%= achievement.lesson.lesson_category.name %></td>
+          <td><%= achievement.concluded_at %></td>
+          <td>
+            <%= link_to "Show this achievement", achievement %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
