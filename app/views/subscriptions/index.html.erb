@@ -1,14 +1,31 @@
 <%= render partial: 'shared/notice' %>
 
-<h1>Subscriptions</h1>
-
-<div id="subscriptions">
-  <% @subscriptions.each do |subscription| %>
-    <%= render subscription %>
-    <p>
-      <%= link_to "Show this subscription", subscription %>
-    </p>
-  <% end %>
+<div class="d-flex justify-content-between">
+  <h1>Subscriptions</h1>
+  <div>
+    <%= link_to "New subscription", new_subscription_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
-<%= link_to "New subscription", new_subscription_path %>
+<div id="subscriptions">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Created at</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subscriptions.each_with_index do |subscription, index| %>
+        <tr scope="row">
+          <td><%= index + 1 %></td>
+          <td><%= subscription.created_at %></td>
+          <td>
+            <%= link_to "Show this subscription", subscription %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
