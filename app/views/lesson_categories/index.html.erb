@@ -18,6 +18,7 @@
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Created at</th>
+        <th scope="col">Min required</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -27,6 +28,7 @@
           <td><%= index + 1 %></td>
           <td><%= lesson_category.name %></td>
           <td><%= lesson_category.created_at %></td>
+          <td><%= lesson_category.min_required %></td>
           <td>
             <%= link_to "Show this lesson category", lesson_category %>
           </td>
