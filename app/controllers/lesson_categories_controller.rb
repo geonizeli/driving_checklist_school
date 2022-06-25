@@ -3,7 +3,7 @@ class LessonCategoriesController < ApplicationController
 
   # GET /lesson_categories or /lesson_categories.json
   def index
-    @lesson_categories = LessonCategory.all
+    @lesson_categories = LessonCategory.all.order(created_at: :asc)
   end
 
   # GET /lesson_categories/1 or /lesson_categories/1.json

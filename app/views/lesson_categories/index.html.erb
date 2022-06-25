@@ -4,15 +4,34 @@
   </div>
 <% end %>
 
-<h1>Lesson categories</h1>
-
-<div id="lesson_categories">
-  <% @lesson_categories.each do |lesson_category| %>
-    <%= render lesson_category %>
-    <p>
-      <%= link_to "Show this lesson category", lesson_category %>
-    </p>
-  <% end %>
+<div class="d-flex justify-content-between">
+  <h1>Lesson categories</h1>
+  <div>
+    <%= link_to "New lesson category", new_lesson_category_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
-<%= link_to "New lesson category", new_lesson_category_path %>
+<div id="lesson_categories">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Created at</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lesson_categories.each_with_index do |lesson_category, index| %>
+        <tr scope="row">
+          <td><%= index + 1 %></td>
+          <td><%= lesson_category.name %></td>
+          <td><%= lesson_category.created_at %></td>
+          <td>
+            <%= link_to "Show this lesson category", lesson_category %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
