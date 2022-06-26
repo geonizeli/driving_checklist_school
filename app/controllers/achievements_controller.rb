@@ -22,7 +22,7 @@ class AchievementsController < ApplicationController
     add_breadcrumb("Achievements", achievements_path)
     add_breadcrumb("New")
 
-    @achievement = Achievement.new
+    @achievement = Achievement.new(subscription_id: params[:subscription_id])
   end
 
   # GET /achievements/1/edit

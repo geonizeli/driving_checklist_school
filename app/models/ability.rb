@@ -10,7 +10,6 @@ class Ability
       can :read, Subject
       can :manage, Subscription, user_id: user.id
       can :manage, Achievement, subscription_id: user.subscription_ids
-      can :create, Achievement
     end
   end
 end
