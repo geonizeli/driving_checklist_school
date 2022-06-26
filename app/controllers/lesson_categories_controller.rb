@@ -49,11 +49,15 @@ class LessonCategoriesController < ApplicationController
 
   # DELETE /lesson_categories/1 or /lesson_categories/1.json
   def destroy
-    @lesson_category.destroy
 
     respond_to do |format|
-      format.html { redirect_to lesson_categories_url, notice: "Lesson category was successfully destroyed." }
-      format.json { head :no_content }
+      if @lesson_category.destroy
+        format.html { redirect_to lesson_categories_url, notice: "Lesson category was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @lesson_category.errors, status: :unprocessable_entity }
+      end
     end
   end
 

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  resources :lesson_categories
+  resources :lessons
   resources :subscriptions
   resources :achievements
-  devise_for :users
-  resources :lessons
-  resources :lesson_categories
 
-  root "lessons#index"
+  root "achievements#index"
 end
