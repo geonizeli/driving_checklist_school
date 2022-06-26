@@ -1,0 +1,19 @@
+<ul class="list-group list-group-flush">
+    <% subscription_report.each do |report| %>
+        <li class="list-group-item">
+            <%= report.last[:subject_name] %>:
+            <div class="progress">
+                <div
+                    class="progress-bar progress-bar-striped"
+                    role="progressbar"
+                    style="width: <%= report.last[:achieved_percentage] %>%;"
+                    aria-valuenow="<%= report.last[:achieved_percentage] %>"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                >
+                <%= report.last[:achieved_percentage] %>% (<%= report.last[:achieved_hours] %> / <%= report.last[:subject_hours] %>)
+                </div>
+            </div>
+        </li>
+    <% end %>
+</ul>

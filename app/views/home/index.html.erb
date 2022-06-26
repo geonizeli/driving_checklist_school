@@ -15,33 +15,38 @@
           <% end %>
         </li>
       <% end %>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subscriptions</div>
-            Manage your subscriptions
-        </div>
-        <%= link_to subscriptions_path, class: "btn btn-link" do %>
-            List
-        <% end %>
-        <%= link_to new_subscription_path, class: "btn btn-primary" do %>
-            Add
-        <% end %>
-      </li>
+      <% if @subscriptions.empty? %>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Subscriptions</div>
+              Manage your subscriptions
+          </div>
+          <%= link_to subscriptions_path, class: "btn btn-link" do %>
+              List
+          <% end %>
+          <%= link_to new_subscription_path, class: "btn btn-primary" do %>
+              Add
+          <% end %>
+        </li>
+      <% end %>
     </ul>
 
     <ul class="list-group">
       <% @subscriptions.each_with_index do |subscription, index| %>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">Achievement</div>
-            Manage your achievements from subscription started at <% subscription.started_at %>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">Achievements</div>
+              Manage your achievements from subscription started at <% subscription.started_at %>
+            </div>
+            <%= link_to achievements_path(q: { subscription_id_eq: subscription.id }), class: "btn btn-link" do %>
+              List
+            <% end %>
+            <%= link_to new_achievement_path(subscription_id: subscription.id), class: "btn btn-primary" do %>
+                Add
+            <% end %>
           </div>
-          <%= link_to achievements_path(q: { subscription_id_eq: subscription.id }), class: "btn btn-link" do %>
-            List
-          <% end %>
-          <%= link_to new_achievement_path(subscription_id: subscription.id), class: "btn btn-primary" do %>
-              Add
-          <% end %>
+          <%= render :partial => 'shared/subscription_report', :locals => { :subscription_report => subscription.report } %>
         </li>
       <% end %>
     </ul>

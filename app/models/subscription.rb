@@ -6,4 +6,8 @@ class Subscription < ApplicationRecord
   def name
     "#{user.name}'s subscription"
   end
+
+  def report
+    SubscriptionReportService.new(self).call
+  end
 end
