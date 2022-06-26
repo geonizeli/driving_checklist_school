@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :subjects
   resources :subscriptions
 
-  root "achievements#index"
+  root "home#index"
 end
