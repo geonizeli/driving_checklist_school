@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_26_163102) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_173013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_163102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "subscription_id"
+    t.bigint "subject_id"
     t.index ["lesson_id"], name: "index_achievements_on_lesson_id"
+    t.index ["subject_id"], name: "index_achievements_on_subject_id"
     t.index ["subscription_id"], name: "index_achievements_on_subscription_id"
   end
 
@@ -46,6 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_163102) do
     t.index ["lesson_category_id"], name: "index_lessons_on_lesson_category_id"
   end
 
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.integer "min_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "started_at"
@@ -69,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_163102) do
   end
 
   add_foreign_key "achievements", "lessons"
+  add_foreign_key "achievements", "subjects"
   add_foreign_key "achievements", "subscriptions"
   add_foreign_key "lessons", "lesson_categories"
   add_foreign_key "subscriptions", "users"

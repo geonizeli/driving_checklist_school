@@ -1,0 +1,31 @@
+<%= render partial: 'shared/notice' %>
+
+<div class="d-flex justify-content-between">
+  <h1>Subjects</h1>
+  <div>
+    <%= link_to "New subject", new_subject_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<div id="subjects">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subjects.each_with_index do |subject, index| %>
+        <tr scope="row">
+          <td><%= index + 1 %></td>
+          <td><%= subject.name %></td>
+          <td>
+            <%= link_to "Show this subject", subject %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
