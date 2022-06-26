@@ -24,7 +24,10 @@
           <td><%= achievement.subject.name %></td>
           <td><%= achievement.concluded_at %></td>
           <td>
-            <%= link_to "Show this achievement", achievement %>
+            <%= link_to "Show", achievement %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_achievement_path(achievement) %>
           </td>
         </tr>
       <% end %>

@@ -33,6 +33,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions or /subscriptions.json
   def create
     @subscription = Subscription.new(subscription_params)
+    @subscription.user_id = current_user.id
 
     respond_to do |format|
       if @subscription.save
@@ -81,6 +82,6 @@ class SubscriptionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def subscription_params
-    params.require(:subscription).permit(:user_id, :started_at, :concluded_at, subject_ids: [])
+    params.require(:subscription).permit(:started_at, subject_ids: [])
   end
 end

@@ -34,7 +34,7 @@
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">Achievement</div>
-            Manage your achievements from subscription <%= index + 1 %>
+            Manage your achievements from subscription started at <% subscription.started_at %>
           </div>
           <%= link_to achievements_path(q: { subscription_id_eq: subscription.id }), class: "btn btn-link" do %>
             List
