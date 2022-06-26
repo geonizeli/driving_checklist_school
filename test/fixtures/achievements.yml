@@ -2,10 +2,10 @@
 
 one:
   concluded_at: 2022-06-25 16:34:04
-  lesson: one
+  subject: one
   subscription: one
 
 two:
   concluded_at: 2022-06-25 16:34:04
-  lesson: two
+  subject: two
   subscription: two

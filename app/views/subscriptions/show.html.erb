@@ -23,7 +23,7 @@
                             labels: ['Concluded', 'Remaining'],
                             datasets: [{
                                 label: '# of Votes',
-                                data: [<%= report.last[:achievements_count] %>, <%= report.last[:lessons_count] %> ],
+                                data: [<%= report.last[:achievements_count] %>, <%= report.last[:subject_hours] %> ],
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -39,7 +39,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: '<%= report.last[:category_name] %>'
+                                    text: '<%= report.last[:subject_name] %>'
                                 }
                             }
                         }

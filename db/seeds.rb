@@ -7,27 +7,19 @@ user = User.find_by(
   password: 'password'
 )
 
-lessons_categories = [LessonCategory.find_or_create_by(
-  name: 'First aids',
-  min_required: 20
-),
-LessonCategory.find_or_create_by(
-  name: 'Laws',
-  min_required: 20
-),
-LessonCategory.find_or_create_by(
-  name: 'Mechanic',
-  min_required: 20
-)]
+subjects = [
+  Subject.find_or_create_by(
+    name: 'First aids',
+    min_hours: 20
+  ),
+  Subject.find_or_create_by(
+    name: 'Laws',
+    min_hours: 20
+  ),
+  Subject.find_or_create_by(
+    name: 'Mechanic',
+    min_hours: 20
+  )
+]
 
-Subscription.find_by(
-  user_id: user.id,
-) || Subscription.create(
-  user_id: user.id,
-  lesson_categories: lessons_categories
-)
-
-lessons_categories.each_with_index do |lesson_category, index|
-  Lesson.create!(name: "#{lesson_category.name} - #{index + 1}", lesson_category_id: lesson_category.id)
-  Lesson.create!(name: "#{lesson_category.name} - #{index + 2}", lesson_category_id: lesson_category.id)
-end
+Subscription.find_by(user_id: user.id,) || Subscription.create(user_id: user.id, subjects: subjects)

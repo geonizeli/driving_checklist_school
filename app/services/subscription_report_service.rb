@@ -4,28 +4,27 @@ class SubscriptionReportService
   end
 
   def call
-    result_by_category_id = {}
+    result_by_subject_id = {}
 
-    lessons_categories.each do |category|
-      result_by_category_id[category.id] = {
-        category_name: category.name,
-        lessons_count: category.lessons.count,
-        achievements_count: achievements_by_lesson_ids_count(category.lessons.pluck(:id)),
+    subjects.each do |subject|
+      result_by_subject_id[subject.id] = {
+        subject_name: subject.name,
+        subject_hours: subject.min_hours,
+        achievements_count: achievements_by_subject_ids_count(subject.id),
       }
     end
 
-    result_by_category_id
+    result_by_subject_id
   end
 
-  def achievements_by_lesson_ids_count(lesson_ids)
+  def achievements_by_subject_ids_count(subject_ids)
     @subscription
       .achievements
-      .includes(:lesson)
-      .where(lesson_id: lesson_ids)
+      .where(subject_id: subject_ids)
       .count
   end
 
-  def lessons_categories
-    @subscription.lesson_categories
+  def subjects
+    @subscription.subjects
   end
 end
