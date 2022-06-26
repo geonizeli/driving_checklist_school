@@ -5,7 +5,9 @@ class AchievementsController < ApplicationController
 
   # GET /achievements or /achievements.json
   def index
-    @achievements = Achievement.accessible_by(current_ability)
+    @achievements = Achievement
+                      .accessible_by(current_ability)
+                      .where(subscription_id: params.dig(:q, :subscription_id_eq))
   end
 
   # GET /achievements/1 or /achievements/1.json

@@ -25,3 +25,12 @@ $chart-size: 400px;
   width: $chart-size;
   height: $chart-size;
 }
+
+.home-container {
+  display: grid;
+  place-items: center;
+}
+
+.home-content {
+  max-width: 400px;
+}

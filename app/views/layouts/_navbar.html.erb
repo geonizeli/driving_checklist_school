@@ -6,37 +6,8 @@
           <i class="fs-4 bi bi-app" role="img" aria-label="Bootstrap"></i>
           <span class="fs-4 ms-2">
             Driving School Checklist
-            <%= current_user.email %>
           </span>
         </a>
-        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small text-center">
-          <li>
-            <%= link_to achievements_path , class: "nav-link text-white" do %>
-              <i class="bi bi-bookmark-check fs-4 d-block mx-auto mb-1"></i>
-              Achievements
-            <% end %>
-          </li>
-          <li>
-            <%= link_to subscriptions_path , class: "nav-link text-white" do %>
-              <i class="bi bi-calendar-date fs-4 d-block mx-auto mb-1"></i>
-              Subscriptions
-            <% end %>
-          </li>
-          <li>
-            <%= link_to subjects_path , class: "nav-link text-white" do %>
-              <i class="bi bi-book fs-4 d-block mx-auto mb-1"></i>
-              Subjects
-            <% end if current_user.admin? %>
-          </li>
-          <!--
-          <li>
-            <a href="#" class="nav-link text-secondary">
-              <i class="bi bi-speedometer2 fs-4 d-block mx-auto mb-1"></i>
-              Home
-            </a>
-          </li>
-          -->
-        </ul>
       </div>
     </div>
   </div>
