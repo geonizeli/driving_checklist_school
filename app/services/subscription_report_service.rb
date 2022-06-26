@@ -19,7 +19,6 @@ class SubscriptionReportService
 
   def achievements_by_lesson_ids_count(lesson_ids)
     @subscription
-      .user
       .achievements
       .includes(:lesson)
       .where(lesson_id: lesson_ids)

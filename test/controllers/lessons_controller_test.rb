@@ -52,7 +52,7 @@ class LessonsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
   end
 
-  test "should not destroy the lesson when there are no dependent achievements" do
+  test "should destroy the lesson when there are no dependent achievements" do
     lesson_two = lessons(:two)
     lesson_two.achievements.destroy_all
 

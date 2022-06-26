@@ -44,9 +44,20 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to subscription_url(@subscription)
   end
 
-  test "should destroy subscription" do
-    assert_difference("Subscription.count", -1) do
+  test "should not destroy the subscription when there are dependent achievements" do
+    assert_difference("Subscription.count", 0) do
       delete subscription_url(@subscription)
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test "should destroy the subscription when there are no dependent achievements" do
+    subscription_two = subscriptions(:two)
+    subscription_two.achievements.destroy_all
+
+    assert_difference("Subscription.count", -1) do
+      delete subscription_url(subscription_two)
     end
 
     assert_redirected_to subscriptions_url

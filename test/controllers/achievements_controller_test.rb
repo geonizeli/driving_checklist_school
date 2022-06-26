@@ -23,7 +23,7 @@ class AchievementsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create achievement" do
     assert_difference("Achievement.count") do
-      post achievements_url, params: { achievement: { concluded_at: @achievement.concluded_at, lesson_id: @achievement.lesson_id, user_id: @achievement.user_id } }
+      post achievements_url, params: { achievement: { concluded_at: @achievement.concluded_at, lesson_id: @achievement.lesson_id, subscription_id: @achievement.subscription_id } }
     end
 
     assert_redirected_to achievement_url(Achievement.last)
@@ -40,7 +40,7 @@ class AchievementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update achievement" do
-    patch achievement_url(@achievement), params: { achievement: { concluded_at: @achievement.concluded_at, lesson_id: @achievement.lesson_id, user_id: @achievement.user_id } }
+    patch achievement_url(@achievement), params: { achievement: { concluded_at: @achievement.concluded_at, lesson_id: @achievement.lesson_id, subscription_id: @achievement.subscription_id } }
     assert_redirected_to achievement_url(@achievement)
   end
 

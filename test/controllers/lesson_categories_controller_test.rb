@@ -52,7 +52,7 @@ class LessonCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
   end
 
-  test "should not destroy the lesson_category when there are dependent lessons" do
+  test "should destroy the lesson_category when there are dependent lessons" do
     lesson_category = lesson_categories(:two)
     lesson_category.lessons.each do |lesson|
       lesson.achievements.destroy_all

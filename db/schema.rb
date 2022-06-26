@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_26_150001) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_163102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "achievements", force: :cascade do |t|
     t.datetime "concluded_at", null: false
     t.bigint "lesson_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "subscription_id"
     t.index ["lesson_id"], name: "index_achievements_on_lesson_id"
-    t.index ["user_id"], name: "index_achievements_on_user_id"
+    t.index ["subscription_id"], name: "index_achievements_on_subscription_id"
   end
 
   create_table "lesson_categories", force: :cascade do |t|
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_150001) do
   end
 
   add_foreign_key "achievements", "lessons"
-  add_foreign_key "achievements", "users"
+  add_foreign_key "achievements", "subscriptions"
   add_foreign_key "lessons", "lesson_categories"
   add_foreign_key "subscriptions", "users"
 end
