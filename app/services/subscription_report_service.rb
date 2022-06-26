@@ -7,10 +7,14 @@ class SubscriptionReportService
     result_by_subject_id = {}
 
     subjects.each do |subject|
+      achieved_hours = achievements_by_subject_ids_count(subject.id)
+      percentage = achieved_hours.to_f / subject.min_hours.to_f * 100.0
+
       result_by_subject_id[subject.id] = {
         subject_name: subject.name,
         subject_hours: subject.min_hours,
-        achievements_count: achievements_by_subject_ids_count(subject.id),
+        achieved_hours: achieved_hours,
+        achieved_percentage: percentage
       }
     end
 
