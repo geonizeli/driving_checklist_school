@@ -6,28 +6,28 @@ class AchievementsController < ApplicationController
   # GET /achievements or /achievements.json
   def index
     add_breadcrumb("Achievements")
-    @achievements = Achievement
-                      .accessible_by(current_ability)
-                      .where(subscription_id: params.dig(:q, :subscription_id_eq))
+
+    @achievements = Achievement.accessible_by(current_ability)
+    @achievements = @achievements.where(query_params) if query_params.present?
   end
 
   # GET /achievements/1 or /achievements/1.json
   def show
-    add_breadcrumb("Achievements", achievements_path)
+    add_breadcrumb("Achievements", achievements_path(query_params))
     add_breadcrumb(@achievement.id)
   end
 
   # GET /achievements/new
   def new
-    add_breadcrumb("Achievements", achievements_path)
+    add_breadcrumb("Achievements", achievements_path(query_params))
     add_breadcrumb("New")
 
-    @achievement = Achievement.new(subscription_id: params[:subscription_id])
+    @achievement = Achievement.new(query_params)
   end
 
   # GET /achievements/1/edit
   def edit
-    add_breadcrumb("Achievements", achievements_path)
+    add_breadcrumb("Achievements", achievements_path(query_params))
     add_breadcrumb(@achievement.id, @achievement)
     add_breadcrumb("Edit")
   end
@@ -71,6 +71,10 @@ class AchievementsController < ApplicationController
   end
 
   private
+    def query_params
+      params.permit(:subscription_id)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_achievement
       @achievement = Achievement.find(params[:id])

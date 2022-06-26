@@ -6,6 +6,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions or /subscriptions.json
   def index
     add_breadcrumb("Subscriptions")
+
     @subscriptions = Subscription.accessible_by(current_ability)
   end
 
@@ -13,6 +14,7 @@ class SubscriptionsController < ApplicationController
   def show
     add_breadcrumb("Subscriptions", subscriptions_path)
     add_breadcrumb(@subscription.id)
+
     @subscription_report = SubscriptionReportService.new(@subscription).call
   end
 
@@ -20,6 +22,7 @@ class SubscriptionsController < ApplicationController
   def new
     add_breadcrumb("Subscriptions", subscriptions_path)
     add_breadcrumb("New")
+
     @subscription = Subscription.new
   end
 

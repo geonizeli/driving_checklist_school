@@ -6,6 +6,7 @@ class SubjectsController < ApplicationController
   # GET /subjects or /subjects.json
   def index
     add_breadcrumb("Subjects")
+
     @subjects = Subject.all
   end
 
@@ -19,6 +20,7 @@ class SubjectsController < ApplicationController
   def new
     add_breadcrumb("Subjects", subjects_path)
     add_breadcrumb("New")
+
     @subject = Subject.new
   end
 
