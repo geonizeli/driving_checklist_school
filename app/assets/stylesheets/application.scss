@@ -5,3 +5,22 @@
 .form-actions {
   margin-top: 16px;
 }
+
+$chart-size: 400px;
+
+.charts-group-contianer {
+  display: grid;
+  place-items: center;
+}
+
+.charts-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.chart {
+  width: $chart-size;
+  height: $chart-size;
+}

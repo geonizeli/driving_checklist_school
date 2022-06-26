@@ -2,6 +2,48 @@
 
 <%= render @subscription %>
 
+<div class="charts-group-contianer">
+    <div class="charts-group">
+        <% @subscription_report.each_with_index do |report, index| %>
+            <div class="chart">
+                <canvas id="chart-<%= index %>" width="100" height="100"></canvas>
+            <script>
+                new Chart(
+                    document.getElementById("chart-<%= index %>").getContext('2d'),
+                    {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Concluded', 'Remaining'],
+                            datasets: [{
+                                label: '# of Votes',
+                                data: [<%= report.last[:achievements_count] %>, <%= report.last[:lessons_count] %> ],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '<%= report.last[:category_name] %>'
+                                }
+                            }
+                        }
+                    }
+                );
+            </script>
+            </div>
+        <% end %>
+    </div>
+</div>
+
 <div>
   <%= link_to "Edit this subscription", edit_subscription_path(@subscription) %> |
   <%= link_to "Back to subscriptions", subscriptions_path %>

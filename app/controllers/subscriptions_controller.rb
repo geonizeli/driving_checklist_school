@@ -8,6 +8,7 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/1 or /subscriptions/1.json
   def show
+    @subscription_report = SubscriptionReportService.new(@subscription).call
   end
 
   # GET /subscriptions/new
