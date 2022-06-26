@@ -5,6 +5,7 @@ class AchievementsController < ApplicationController
 
   # GET /achievements or /achievements.json
   def index
+    add_breadcrumb("Achievements")
     @achievements = Achievement
                       .accessible_by(current_ability)
                       .where(subscription_id: params.dig(:q, :subscription_id_eq))
@@ -12,15 +13,23 @@ class AchievementsController < ApplicationController
 
   # GET /achievements/1 or /achievements/1.json
   def show
+    add_breadcrumb("Achievements", achievements_path)
+    add_breadcrumb(@achievement.id)
   end
 
   # GET /achievements/new
   def new
+    add_breadcrumb("Achievements", achievements_path)
+    add_breadcrumb("New")
+
     @achievement = Achievement.new
   end
 
   # GET /achievements/1/edit
   def edit
+    add_breadcrumb("Achievements", achievements_path)
+    add_breadcrumb(@achievement.id, @achievement)
+    add_breadcrumb("Edit")
   end
 
   # POST /achievements or /achievements.json

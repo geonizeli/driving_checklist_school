@@ -5,21 +5,29 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions or /subscriptions.json
   def index
+    add_breadcrumb("Subscriptions")
     @subscriptions = Subscription.accessible_by(current_ability)
   end
 
   # GET /subscriptions/1 or /subscriptions/1.json
   def show
+    add_breadcrumb("Subscriptions", subscriptions_path)
+    add_breadcrumb(@subscription.id)
     @subscription_report = SubscriptionReportService.new(@subscription).call
   end
 
   # GET /subscriptions/new
   def new
+    add_breadcrumb("Subscriptions", subscriptions_path)
+    add_breadcrumb("New")
     @subscription = Subscription.new
   end
 
   # GET /subscriptions/1/edit
   def edit
+    add_breadcrumb("Subscriptions", subscriptions_path)
+    add_breadcrumb(@subscription.id, subscription_path(@subscription))
+    add_breadcrumb("Edit")
   end
 
   # POST /subscriptions or /subscriptions.json

@@ -13,6 +13,7 @@
   <body>
     <%= render(partial: 'layouts/navbar') if user_signed_in? %>
     <div class="container mt-4">
+      <%= render(partial: 'layouts/breadcrumbs') if user_signed_in? %>
       <%= yield %>
     </div>
   </body>

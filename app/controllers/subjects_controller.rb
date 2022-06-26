@@ -5,20 +5,28 @@ class SubjectsController < ApplicationController
 
   # GET /subjects or /subjects.json
   def index
+    add_breadcrumb("Subjects")
     @subjects = Subject.all
   end
 
   # GET /subjects/1 or /subjects/1.json
   def show
+    add_breadcrumb("Subjects", subjects_path)
+    add_breadcrumb(@subject.id)
   end
 
   # GET /subjects/new
   def new
+    add_breadcrumb("Subjects", subjects_path)
+    add_breadcrumb("New")
     @subject = Subject.new
   end
 
   # GET /subjects/1/edit
   def edit
+    add_breadcrumb("Subjects", subjects_path)
+    add_breadcrumb(@subject.id, subject_path(@subject))
+    add_breadcrumb("Edit")
   end
 
   # POST /subjects or /subjects.json
