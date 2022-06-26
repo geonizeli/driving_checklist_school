@@ -3,7 +3,7 @@ class AchievementsController < ApplicationController
 
   # GET /achievements or /achievements.json
   def index
-    @achievements = Achievement.all
+    @achievements = Achievement.accessible_by(current_ability)
   end
 
   # GET /achievements/1 or /achievements/1.json

@@ -1,9 +1,9 @@
 
 user = User.find_by(
-  email: 'test@test.com',
+  email: 'test2@test.com',
 ) || User.create(
   name: 'Test User',
-  email: 'test@test.com',
+  email: 'test2@test.com',
   password: 'password'
 )
 

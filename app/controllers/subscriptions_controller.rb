@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions or /subscriptions.json
   def index
-    @subscriptions = Subscription.all
+    @subscriptions = Subscription.accessible_by(current_ability)
   end
 
   # GET /subscriptions/1 or /subscriptions/1.json
