@@ -14,7 +14,7 @@ class SubscriptionReportService
         subject_name: subject.name,
         subject_hours: subject.min_hours,
         achieved_hours: achieved_hours,
-        achieved_percentage: percentage
+        achieved_percentage: percentage.round(1)
       }
     end
 
