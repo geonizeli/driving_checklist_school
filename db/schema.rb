@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_25_195507) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_150001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_195507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "min_required", default: 0, null: false
+  end
+
+  create_table "lesson_categories_subscriptions", id: false, force: :cascade do |t|
+    t.bigint "subscription_id"
+    t.bigint "lesson_category_id"
+    t.index ["lesson_category_id"], name: "index_lesson_categories_subscriptions_on_lesson_category_id"
+    t.index ["subscription_id"], name: "index_lesson_categories_subscriptions_on_subscription_id"
   end
 
   create_table "lessons", force: :cascade do |t|

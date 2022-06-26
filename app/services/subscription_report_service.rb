@@ -1,6 +1,6 @@
-class UserSubscriptionReportService
-  def initialize(user)
-    @user = user
+class SubscriptionReportService
+  def initialize(subscription)
+    @subscription = subscription
   end
 
   def call
@@ -18,7 +18,8 @@ class UserSubscriptionReportService
   end
 
   def achievements_by_lesson_ids_count(lesson_ids)
-    @user
+    @subscription
+      .user
       .achievements
       .includes(:lesson)
       .where(lesson_id: lesson_ids)
@@ -26,6 +27,6 @@ class UserSubscriptionReportService
   end
 
   def lessons_categories
-    LessonCategory.all.select(:id, :name)
+    @subscription.lesson_categories
   end
 end
